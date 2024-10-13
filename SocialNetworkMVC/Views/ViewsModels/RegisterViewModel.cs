@@ -10,15 +10,15 @@ namespace SocialNetworkMVC.Views.ViewsModels
         [Required(ErrorMessage = "Не введена фамилия")]
         [Display(Name = "Фамилия")]
         public string LastName { get; set; }
-        [Required(ErrorMessage ="Не введен день рождения")]
+        [Required(ErrorMessage = "Не введен день рождения")]
         [Display(Name = "День")]
-        public string Day { get; set; }
+        public string Day { get; set; } = "1";
         [Required(ErrorMessage = "Не введен месяц рождения")]
         [Display(Name = "Месяц")]
-        public string Month { get; set; }
+        public string Month { get; set; } = "1";
         [Required(ErrorMessage = "Не введен год рождения")]
         [Display(Name = "Год")]
-        public string Year { get; set; }
+        public string Year { get; set; } = "1";
         [Required(ErrorMessage = "Пароль не введен")]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]

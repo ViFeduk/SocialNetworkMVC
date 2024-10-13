@@ -19,6 +19,36 @@
         <span asp-validation-for="LastName"></span>
     </div>
 
+    <div class="text-color-gray text-size_12">Дата рождения</div>
+    <div class="mrgn center">
+        <select asp-for="Day" class="form-control date_control" id="ddlDay">
+            <option value="">Выберите день</option>
+            @for (int i = 1; i <= 31; i++)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+        <span asp-validation-for="Day" class="text-danger"></span>
+
+        <select asp-for="Month" class="form-control date_control" id="ddlMonth">
+            <option value="">Выберите месяц</option>
+            @for (int i = 1; i <= 12; i++)
+            {
+                <option value="@i">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i)</option>
+            }
+        </select>
+        <span asp-validation-for="Month" class="text-danger"></span>
+
+        <select asp-for="Year" class="form-control date_control" id="ddlYear">
+            <option value="">Выберите год</option>
+            @for (int year = DateTime.Now.Year; year >= DateTime.Now.Year - 100; year--)
+            {
+                <option value="@year">@year</option>
+            }
+        </select>
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+
     <div>
         <input type="submit" value="Регистрация" />
     </div>

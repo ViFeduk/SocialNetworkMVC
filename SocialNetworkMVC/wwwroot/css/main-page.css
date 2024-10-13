@@ -42,3 +42,53 @@
 .background-white {
     background-color: white;
 }
+
+.autent {
+    background-color: #ffffff; /* Белый фон формы */
+    border-radius: 8px; /* Закругленные углы */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Тень */
+    padding: 40px; /* Внутренние отступы */
+    width: 300px; /* Ширина формы */
+    text-align: center; /* Центрирование текста */
+}
+
+h1 {
+    margin-bottom: 20px; /* Отступ снизу заголовка */
+    font-size: 24px; /* Размер заголовка */
+    color: #333; /* Цвет заголовка */
+}
+
+.input-field {
+    margin-bottom: 15px; /* Отступ снизу полей ввода */
+}
+
+input[type="email"],
+input[type="password"],
+input[type="checkbox"] {
+    width: 100%; /* Ширина полей ввода */
+    padding: 10px; /* Внутренние отступы */
+    border: 1px solid #ccc; /* Цвет границы */
+    border-radius: 4px; /* Закругленные углы */
+    font-size: 16px; /* Размер текста в полях ввода */
+}
+
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+        border-color: #007bff; /* Цвет границы при фокусе */
+        outline: none; /* Убрать обводку */
+    }
+
+input[type="submit"] {
+    width: 100%; /* Ширина кнопки */
+    padding: 10px; /* Внутренние отступы */
+    background-color: #007bff; /* Цвет фона кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Убрать границу */
+    border-radius: 4px; /* Закругленные углы кнопки */
+    font-size: 16px; /* Размер текста кнопки */
+    cursor: pointer; /* Указатель при наведении */
+}
+
+    input[type="submit"]:hover {
+        background-color: #0056b3; /* Цвет кнопки при наведении */
+    }
