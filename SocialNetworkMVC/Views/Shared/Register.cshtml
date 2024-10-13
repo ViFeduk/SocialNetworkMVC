@@ -1,6 +1,8 @@
-﻿@model SocialNetworkMVC.Views.ViewsModels.RegisterViewModel
+﻿@using SocialNetworkMVC.Views.ViewsModels
+@model SocialNetworkMVC.Views.ViewsModels.RegisterViewModel
 @{
     ViewData["Title"] = "Register";
+    
 }
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
@@ -8,7 +10,7 @@
 <div class="register">
     <h1>Впервые с нами?</h1> <!-- Заголовок -->
     <h2>Регистрация нового пользователя</h2> <!-- Подзаголовок -->
-    <form method="post" asp-controller="AccountManager" asp-action="Register">
+    <form method="get" asp-controller="Register" asp-action="RegisterPart2">
         <div class="input-field">
             <!-- Поле для имени -->
             <label asp-for="FirstName">Введите имя</label>
@@ -35,9 +37,16 @@
             <select asp-for="Month" required>
                 <option value="">Месяц</option>
                 <!-- Добавьте месяцы -->
-                @for (int i = 1; i <= 12; i++)
+                @foreach (var month in Enum.GetValues(typeof(Months)).Cast<Months>())
                 {
-                    <option value="@i">@i</option>
+                    var displayName = month.GetType()
+                    .GetField(month.ToString())
+                    .GetCustomAttributes(typeof(System.ComponentModel.DataAnnotations.DisplayAttribute), false)
+                    .FirstOrDefault() as System.ComponentModel.DataAnnotations.DisplayAttribute;
+
+                    var monthName = displayName != null ? displayName.Name : month.ToString();
+
+                    <option value="@((int)month)">@monthName</option>
                 }
             </select>
             <select asp-for="Year" required>

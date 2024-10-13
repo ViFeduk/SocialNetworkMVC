@@ -4,22 +4,22 @@ namespace SocialNetworkMVC.Views.ViewsModels
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage ="Не введено имя")]
+        [Required]
         [Display(Name = "Имя")]
         public string FirstName { get; set; }
-        [Required(ErrorMessage = "Не введена фамилия")]
+        [Required]
         [Display(Name = "Фамилия")]
         public string LastName { get; set; }
-        [Required(ErrorMessage = "Не введен день рождения")]
+        [Required]
         [Display(Name = "День")]
         public string Day { get; set; } = "1";
-        [Required(ErrorMessage = "Не введен месяц рождения")]
+        [Required]
         [Display(Name = "Месяц")]
         public string Month { get; set; } = "1";
-        [Required(ErrorMessage = "Не введен год рождения")]
+        [Required]
         [Display(Name = "Год")]
         public string Year { get; set; } = "1";
-        [Required(ErrorMessage = "Пароль не введен")]
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
         [StringLength(100, ErrorMessage = "Поле {0} должно иметь минимум {2} и максимум {1} символов.", MinimumLength = 5)]
@@ -29,10 +29,10 @@ namespace SocialNetworkMVC.Views.ViewsModels
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердить пароль")]
         public string PasswordConfirm { get; set; }
-        [Required(ErrorMessage = "Не введен никнейм")]
+        [Required]
         [Display(Name = "Никнейм")]
         public string Login { get; set; }
-        [Required(ErrorMessage = "Не введена почта")]
+        [Required]
         [Display(Name = "Почта")]
         [EmailAddress(ErrorMessage = "Некорректная почта")]
         public string EmailReg { get; set; }
