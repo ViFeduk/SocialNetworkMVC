@@ -5,51 +5,51 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
 
-<h2>Регистрация нового пользователя</h2>
-<form method="get" asp-controller="Register" asp-action="RegisterPart2">
-    <div asp-validation-summary="ModelOnly"></div>
-    <div>
-        <label asp-for="FirstName"></label><br />
-        <input asp-for="FirstName" />
-        <span asp-validation-for="FirstName"></span>
-    </div>
-    <div>
-        <label asp-for="LastName"></label><br />
-        <input asp-for="LastName" />
-        <span asp-validation-for="LastName"></span>
-    </div>
-
-    <div class="text-color-gray text-size_12">Дата рождения</div>
-    <div class="mrgn center">
-        <select asp-for="Day" class="form-control date_control" id="ddlDay">
-            <option value="">Выберите день</option>
-            @for (int i = 1; i <= 31; i++)
-            {
-                <option value="@i">@i</option>
-            }
-        </select>
-        <span asp-validation-for="Day" class="text-danger"></span>
-
-        <select asp-for="Month" class="form-control date_control" id="ddlMonth">
-            <option value="">Выберите месяц</option>
-            @for (int i = 1; i <= 12; i++)
-            {
-                <option value="@i">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i)</option>
-            }
-        </select>
-        <span asp-validation-for="Month" class="text-danger"></span>
-
-        <select asp-for="Year" class="form-control date_control" id="ddlYear">
-            <option value="">Выберите год</option>
-            @for (int year = DateTime.Now.Year; year >= DateTime.Now.Year - 100; year--)
-            {
-                <option value="@year">@year</option>
-            }
-        </select>
-        <span asp-validation-for="Year" class="text-danger"></span>
-    </div>
-
-    <div>
-        <input type="submit" value="Регистрация" />
-    </div>
-</form>
+<div class="register">
+    <h1>Впервые с нами?</h1> <!-- Заголовок -->
+    <h2>Регистрация нового пользователя</h2> <!-- Подзаголовок -->
+    <form method="post" asp-controller="AccountManager" asp-action="Register">
+        <div class="input-field">
+            <!-- Поле для имени -->
+            <label asp-for="FirstName">Введите имя</label>
+            <input asp-for="FirstName" type="text" required />
+            <span asp-validation-for="FirstName"></span>
+        </div>
+        <div class="input-field">
+            <!-- Поле для фамилии -->
+            <label asp-for="LastName">Введите фамилию</label>
+            <input asp-for="LastName" type="text" required />
+            <span asp-validation-for="LastName"></span>
+        </div>
+        <div class="input-field">
+            <!-- Поля для даты рождения -->
+            <label>Дата рождения</label>
+            <select asp-for="Day" required>
+                <option value="">День</option>
+                <!-- Добавьте дни от 1 до 31 -->
+                @for (int i = 1; i <= 31; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+            <select asp-for="Month" required>
+                <option value="">Месяц</option>
+                <!-- Добавьте месяцы -->
+                @for (int i = 1; i <= 12; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+            <select asp-for="Year" required>
+                <option value="">Год</option>
+                <!-- Добавьте годы -->
+                @for (int i = DateTime.Now.Year; i >= 1900; i--)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+        </div>
+        <div>
+            <input type="submit" class="register" value="Продолжить регистрацию" />
+        </div>
+    </form>

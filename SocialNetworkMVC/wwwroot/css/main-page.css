@@ -43,13 +43,18 @@
     background-color: white;
 }
 
-.autent {
+.form-container {
     background-color: #ffffff; /* Белый фон формы */
     border-radius: 8px; /* Закругленные углы */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Тень */
     padding: 40px; /* Внутренние отступы */
-    width: 300px; /* Ширина формы */
+    width: 300px; /* Ширина формы для .autent */
     text-align: center; /* Центрирование текста */
+}
+
+/* Измените ширину для регистрационной формы */
+.register {
+    width: 350px; /* Ширина формы для .register */
 }
 
 h1 {
@@ -60,35 +65,54 @@ h1 {
 
 .input-field {
     margin-bottom: 15px; /* Отступ снизу полей ввода */
+    text-align: left; /* Выравнивание текста по левому краю */
 }
 
+/* Общие стили для полей ввода и селектов */
+input[type="text"],
 input[type="email"],
 input[type="password"],
-input[type="checkbox"] {
-    width: 100%; /* Ширина полей ввода */
+select {
+    width: 100%; /* Ширина полей ввода и селектов */
     padding: 10px; /* Внутренние отступы */
     border: 1px solid #ccc; /* Цвет границы */
     border-radius: 4px; /* Закругленные углы */
     font-size: 16px; /* Размер текста в полях ввода */
 }
 
+    /* Стили при фокусе */
+    input[type="text"]:focus,
     input[type="email"]:focus,
-    input[type="password"]:focus {
+    input[type="password"]:focus,
+    select:focus {
         border-color: #007bff; /* Цвет границы при фокусе */
         outline: none; /* Убрать обводку */
     }
 
+/* Стили для кнопки */
 input[type="submit"] {
     width: 100%; /* Ширина кнопки */
     padding: 10px; /* Внутренние отступы */
-    background-color: #007bff; /* Цвет фона кнопки */
-    color: white; /* Цвет текста кнопки */
     border: none; /* Убрать границу */
     border-radius: 4px; /* Закругленные углы кнопки */
     font-size: 16px; /* Размер текста кнопки */
     cursor: pointer; /* Указатель при наведении */
 }
 
-    input[type="submit"]:hover {
-        background-color: #0056b3; /* Цвет кнопки при наведении */
+    input[type="submit"].login {
+        background-color: #007bff; /* Цвет фона кнопки входа */
+        color: white; /* Цвет текста кнопки */
     }
+
+        input[type="submit"].login:hover {
+            background-color: #0056b3; /* Цвет кнопки при наведении */
+        }
+
+    input[type="submit"].register {
+        background-color: #28a745; /* Цвет фона кнопки регистрации */
+        color: white; /* Цвет текста кнопки */
+    }
+
+        input[type="submit"].register:hover {
+            background-color: #218838; /* Цвет кнопки при наведении */
+        }
