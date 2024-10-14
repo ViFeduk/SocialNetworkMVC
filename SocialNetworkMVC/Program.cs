@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SocialNetworkMVC.DataBase;
@@ -27,7 +28,15 @@ namespace SocialNetworkMVC
                 opts.Password.RequireUppercase = false;
                 opts.Password.RequireDigit = false;
             }).AddEntityFrameworkStores<MyAppContext>();
-            
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/AccountManager/Login"; // путь для логина
+                options.AccessDeniedPath = "/AccountManager/AccessDenied"; // путь для отказа в доступе
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60); // время жизни куки
+                options.SlidingExpiration = true; // автоматическое продление при активности
+            });
+
 
             var app = builder.Build();
 

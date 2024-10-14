@@ -8,7 +8,7 @@ namespace SocialNetworkMVC.DataBase
     {
         public MyAppContext(DbContextOptions<MyAppContext> options) : base(options)
         {
-          
+            
             Database.EnsureCreated();
         }
     }

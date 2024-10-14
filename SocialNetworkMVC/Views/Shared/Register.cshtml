@@ -28,7 +28,7 @@
             <label>Дата рождения</label>
             <select asp-for="Day" required>
                 <option value="">День</option>
-                <!-- Добавьте дни от 1 до 31 -->
+                <!--  дни от 1 до 31 -->
                 @for (int i = 1; i <= 31; i++)
                 {
                     <option value="@i">@i</option>
@@ -36,7 +36,7 @@
             </select>
             <select asp-for="Month" required>
                 <option value="">Месяц</option>
-                <!-- Добавьте месяцы -->
+                <!--  месяцы -->
                 @foreach (var month in Enum.GetValues(typeof(Months)).Cast<Months>())
                 {
                     var displayName = month.GetType()
@@ -51,7 +51,7 @@
             </select>
             <select asp-for="Year" required>
                 <option value="">Год</option>
-                <!-- Добавьте годы -->
+                <!--  годы -->
                 @for (int i = DateTime.Now.Year; i >= 1900; i--)
                 {
                     <option value="@i">@i</option>
