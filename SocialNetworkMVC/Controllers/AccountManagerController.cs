@@ -52,7 +52,7 @@ namespace SocialNetworkMVC.Controllers
                         }
                         else
                         {
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("MyPage");
                         }
                     }
                     else
@@ -95,6 +95,42 @@ namespace SocialNetworkMVC.Controllers
 
             var result = _userManager.GetUserAsync(user);
             return View("User", new UserViewModel(result.Result));
+        }
+        [Route("Update")]
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Update()
+        {
+            var user = User;
+            var result = _userManager.GetUserAsync(user);
+            return View("Edit", new UserEditViewModel(result.Result));
+        }
+       [Route("Update")]
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Update(UserEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByIdAsync(model.User.Id);
+
+                UserFromModel.Convert(user, model);
+
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("MyPage", "AccountManager");
+                }
+                else
+                {
+                    return RedirectToAction("Edit", "AccountManager");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Некорректные данные");
+                return View("Edit", model);
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SocialNetworkMVC.DataBase.Configuration;
 using SocialNetworkMVC.Models;
 
 namespace SocialNetworkMVC.DataBase
@@ -8,8 +9,15 @@ namespace SocialNetworkMVC.DataBase
     {
         public MyAppContext(DbContextOptions<MyAppContext> options) : base(options)
         {
-            
+           
             Database.EnsureCreated();
         }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.ApplyConfiguration<Friend>(new FriendConfiguration());
+        }
     }
+    
 }

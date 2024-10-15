@@ -1,0 +1,64 @@
+﻿@model SocialNetworkMVC.Views.ViewsModels.UserEditViewModel
+@{
+}
+<form class="frm" method="post" asp-controller="AccountManager" asp-action="Update">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div>
+        <div class="mrgn">
+            <label asp-for="@Model.User.Id"></label>
+            <input asp-for="@Model.User.Id" class="form-control" placeholder="Введите ID пользователя" />
+            <span asp-validation-for="@Model.User.Id" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div>
+        <div class="mrgn">
+            <label asp-for="@Model.User.FirstName"></label>
+            <input asp-for="@Model.User.FirstName" class="form-control" placeholder="Введите имя" />
+            <span asp-validation-for="@Model.User.FirstName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div>
+        <div class="mrgn">
+            <label asp-for="@Model.User.LastName"></label>
+            <input asp-for="@Model.User.LastName" class="form-control" placeholder="Введите фамилию" />
+            <span asp-validation-for="@Model.User.LastName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mrgn center">
+        <label asp-for="@Model.User.DateBirth"></label>
+        <input asp-for="@Model.User.DateBirth" class="form-control" placeholder="Выберите дату рождения" type="date" required />
+        <span asp-validation-for="@Model.User.DateBirth" class="text-danger"></span>
+    </div>
+
+    <div>
+        <div class="mrgn">
+            <label asp-for="@Model.User.Email"></label>
+            <input asp-for="@Model.User.Email" class="form-control" placeholder="Введите email" />
+            <span asp-validation-for="@Model.User.Email" class="text-danger"></span>
+        </div>
+        <div class="mrgn">
+            <label asp-for="@Model.User.Status"></label>
+            <input asp-for="@Model.User.Status" class="form-control" placeholder="Введите статус" />
+            <span asp-validation-for="@Model.User.Status" class="text-danger"></span>
+        </div>
+        <div class="mrgn">
+            <label asp-for="@Model.User.About"></label>
+            <input asp-for="@Model.User.About" class="form-control" placeholder="Информация обо мне" />
+            <span asp-validation-for="@Model.User.About" class="text-danger"></span>
+        </div>
+
+        <div class="mrgn">
+            <label asp-for="@Model.User.UserName"></label>
+            <input asp-for="@Model.User.UserName" class="form-control" placeholder="Введите имя пользователя" />
+            <span asp-validation-for="@Model.User.UserName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="center">
+        <input class="btn_submit" type="submit" value="Сохранить" />
+    </div>
+</form>

@@ -1,6 +1,6 @@
-﻿namespace SocialNetworkMVC.DataBase
+﻿namespace SocialNetworkMVC.DataBase.Repositories
 {
-    public interface IUnitOfWork: IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         int SaveChanges(bool ensureAutoHistory = false);
 

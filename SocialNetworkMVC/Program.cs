@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SocialNetworkMVC.DataBase;
+using SocialNetworkMVC.DataBase.Configuration;
+using SocialNetworkMVC.DataBase.Repositories;
 using SocialNetworkMVC.Models;
 using System.Reflection;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -20,6 +22,9 @@ namespace SocialNetworkMVC
             var assembly = Assembly.GetAssembly(typeof(AppMappingProfile));
             builder.Services.AddAutoMapper(assembly);
             builder.Services.AddDbContext<MyAppContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefoultConnection")));
+           builder.Services.AddCustomRepository<Friend, FriendRepository>().AddUnitOfWork();
+            
+
             builder.Services.AddIdentity<User, IdentityRole>(opts =>
             {
                 opts.Password.RequiredLength = 5;
@@ -36,6 +41,8 @@ namespace SocialNetworkMVC
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60); // время жизни куки
                 options.SlidingExpiration = true; // автоматическое продление при активности
             });
+            
+   
 
 
             var app = builder.Build();
@@ -53,8 +60,9 @@ namespace SocialNetworkMVC
 
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
+           
 
             app.MapControllerRoute(
                 name: "default",
