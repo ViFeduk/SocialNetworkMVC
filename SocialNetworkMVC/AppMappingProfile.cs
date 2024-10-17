@@ -9,7 +9,7 @@ namespace SocialNetworkMVC
         public AppMappingProfile()
         {
             CreateMap<RegisterViewModel, User>()
-                .ForMember(dest => dest.DateBirth, opt => opt.MapFrom(src => new DateTime(int.Parse(src.Year), int.Parse(src.Month), int.Parse(src.Day))))
+                
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.EmailReg))
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.EmailReg));
 

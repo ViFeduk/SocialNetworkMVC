@@ -24,39 +24,11 @@
             <span asp-validation-for="LastName"></span>
         </div>
         <div class="input-field">
-            <!-- Поля для даты рождения -->
-            <label>Дата рождения</label>
-            <select asp-for="Day" required>
-                <option value="">День</option>
-                <!--  дни от 1 до 31 -->
-                @for (int i = 1; i <= 31; i++)
-                {
-                    <option value="@i">@i</option>
-                }
-            </select>
-            <select asp-for="Month" required>
-                <option value="">Месяц</option>
-                <!--  месяцы -->
-                @foreach (var month in Enum.GetValues(typeof(Months)).Cast<Months>())
-                {
-                    var displayName = month.GetType()
-                    .GetField(month.ToString())
-                    .GetCustomAttributes(typeof(System.ComponentModel.DataAnnotations.DisplayAttribute), false)
-                    .FirstOrDefault() as System.ComponentModel.DataAnnotations.DisplayAttribute;
-
-                    var monthName = displayName != null ? displayName.Name : month.ToString();
-
-                    <option value="@((int)month)">@monthName</option>
-                }
-            </select>
-            <select asp-for="Year" required>
-                <option value="">Год</option>
-                <!--  годы -->
-                @for (int i = DateTime.Now.Year; i >= 1900; i--)
-                {
-                    <option value="@i">@i</option>
-                }
-            </select>
+            <div class="mrgn center">
+                <label asp-for="DateBirth"></label>
+                <input asp-for="DateBirth" class="form-control date_control" type="date" />
+                <span asp-validation-for="DateBirth" class="text-danger"></span>
+            </div>
         </div>
         <div>
             <input type="submit" class="register" value="Продолжить регистрацию" />

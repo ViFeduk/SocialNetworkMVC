@@ -11,14 +11,9 @@ namespace SocialNetworkMVC.Views.ViewsModels
         [Display(Name = "Фамилия")]
         public string LastName { get; set; }
         [Required]
-        [Display(Name = "День")]
-        public string Day { get; set; } = "1";
-        [Required]
-        [Display(Name = "Месяц")]
-        public string Month { get; set; } = "1";
-        [Required]
-        [Display(Name = "Год")]
-        public string Year { get; set; } = "1";
+        [Display(Name = "Дата рождения")]
+        [DataType(DataType.Date)]
+        public DateTime DateBirth { get; set; }
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
