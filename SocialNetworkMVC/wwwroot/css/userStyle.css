@@ -38,6 +38,7 @@
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
+    font-size: 16px;
 }
 
 .profile-info {
@@ -47,7 +48,7 @@
 
     .profile-info h1 {
         font-size: 24px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
     .profile-info p {
@@ -59,3 +60,55 @@
     .profile-info strong {
         color: #333;
     }
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+.friends-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.friend {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px;
+    text-align: center;
+}
+
+    .friend img {
+        width: 100px;
+        height: 100px;
+        border-radius: 8px;
+    }
+
+.friend-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.btn {
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-chat {
+    background-color: #4285f4;
+    width : 120px;
+}
+
+.btn-delete {
+    background-color: #d9534f;
+}

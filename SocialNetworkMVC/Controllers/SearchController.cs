@@ -23,7 +23,6 @@ namespace SocialNetworkMVC.Controllers
         private async Task<SearchViewModel> CreateSearch(string search)
         {
             var currentuser = User;
-
             var result = await _userManager.GetUserAsync(currentuser);
 
             var list = _userManager.Users.AsEnumerable().Where(x => x.GetFullName().ToLower().Contains(search.ToLower())).ToList();
@@ -33,7 +32,8 @@ namespace SocialNetworkMVC.Controllers
             list.ForEach(x =>
             {
                 var t = _mapper.Map<UserWithFriendExt>(x);
-                t.IsFriendWithCurrent = withfriend.Where(y => y.Id == x.Id || x.Id == result.Id).Count() != 0;
+                t.IsFriendWithCurrent = withfriend.Any(y => y.Id == x.Id);
+                t.IsCurrentUser = x.Id == result.Id; // Добавляем проверку, является ли пользователь текущим
                 data.Add(t);
             });
 

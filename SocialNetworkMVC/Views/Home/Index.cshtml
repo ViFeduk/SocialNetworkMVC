@@ -7,6 +7,7 @@
 
 @if (isAuthenticated)
 {
+  
     <p> @User.Identity.Name</p>
     <a asp-controller="AccountManager" asp-action="MyPage">Мой профиль</a>
     <form method="post" asp-controller="AccountManager" asp-action="Logout">
@@ -27,6 +28,7 @@ else
         <div class="main">
 
             <partial name="Login" />
+            
 
             <partial name="Register" />
 

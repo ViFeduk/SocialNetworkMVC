@@ -116,3 +116,28 @@ input[type="submit"] {
         input[type="submit"].register:hover {
             background-color: #218838; /* Цвет кнопки при наведении */
         }
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.navbar-search {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.navbar-login form,
+.navbar-login a {
+    margin: 0;
+}

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SocialNetworkMVC.DataBase.Repositories;
 using SocialNetworkMVC.Models;
 using SocialNetworkMVC.Views.ViewsModels;
 
@@ -12,11 +13,13 @@ namespace SocialNetworkMVC.Controllers
         private IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper)
+        private readonly IUnitOfWork _unitOfWork;
+        public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
 
@@ -93,9 +96,18 @@ namespace SocialNetworkMVC.Controllers
         {
             var user = User;
 
-            var result = _userManager.GetUserAsync(user);
-            return View("User", new UserViewModel(result.Result));
+            var result = await _userManager.GetUserAsync(user);
+            var model = new UserViewModel(result);
+            model.Friends = await GetAllFriend(model.User);
+            return View("User", model);
         }
+        private async Task<List<User>> GetAllFriend(User user)
+        {
+            var repository = _unitOfWork.GetRepository<Friend>() as FriendRepository;
+
+            return repository.GetFriendsByUser(user);
+        }
+       
         [Route("Update")]
         [Authorize]
         [HttpGet]
@@ -105,6 +117,7 @@ namespace SocialNetworkMVC.Controllers
             var result = _userManager.GetUserAsync(user);
             return View("Edit", new UserEditViewModel(result.Result));
         }
+
        [Route("Update")]
         [Authorize]
         [HttpPost]

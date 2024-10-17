@@ -9,21 +9,42 @@ namespace SocialNetworkMVC.DataBase.Repositories
         {
 
         }
-        public void AddFriend(User target, User Friend)
+        public void AddFriend(User target, User friend)
         {
-            var friends = Set.AsEnumerable().FirstOrDefault(x => x.UserId == target.Id && x.CurrentFriendId == Friend.Id);
-
-            if (friends == null)
+            if (target.Id == friend.Id)
             {
-                var item = new Friend()
+                return;
+            }
+
+            // Проверяем, есть ли уже запись о дружбе в одной из сторон
+            var existingFriendship = Set.AsEnumerable().FirstOrDefault(x =>
+                (x.UserId == target.Id && x.CurrentFriendId == friend.Id) ||
+                (x.UserId == friend.Id && x.CurrentFriendId == target.Id));
+
+            // Если дружбы нет, создаем обе записи
+            if (existingFriendship == null)
+            {
+                // Запись для первого пользователя
+                var item1 = new Friend()
                 {
                     UserId = target.Id,
                     User = target,
-                    CurrentFriend = Friend,
-                    CurrentFriendId = Friend.Id,
+                    CurrentFriend = friend,
+                    CurrentFriendId = friend.Id,
                 };
 
-                Create(item);
+                Create(item1);
+
+                // Запись для второго пользователя
+                var item2 = new Friend()
+                {
+                    UserId = friend.Id,
+                    User = friend,
+                    CurrentFriend = target,
+                    CurrentFriendId = target.Id,
+                };
+
+                Create(item2);
             }
         }
 
@@ -34,13 +55,25 @@ namespace SocialNetworkMVC.DataBase.Repositories
             return friends.ToList();
         }
 
-        public void DeleteFriend(User target, User Friend)
+        public void DeleteFriend(User target, User friend)
         {
-            var friends = Set.AsEnumerable().FirstOrDefault(x => x.UserId == target.Id && x.CurrentFriendId == Friend.Id);
-
-            if (friends != null)
+            if (target.Id == friend.Id)
             {
-                Delete(friends);
+                return;
+            }
+
+            // Найти обе записи о дружбе
+            var friendship1 = Set.FirstOrDefault(x => x.UserId == target.Id && x.CurrentFriendId == friend.Id);
+            var friendship2 = Set.FirstOrDefault(x => x.UserId == friend.Id && x.CurrentFriendId == target.Id);
+
+            // Удаляем записи, если они существуют
+            if (friendship1 != null)
+            {
+                Delete(friendship1);
+            }
+            if (friendship2 != null)
+            {
+                Delete(friendship2);
             }
         }
     }

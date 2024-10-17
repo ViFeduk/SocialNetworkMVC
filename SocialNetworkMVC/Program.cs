@@ -23,6 +23,7 @@ namespace SocialNetworkMVC
             builder.Services.AddAutoMapper(assembly);
             builder.Services.AddDbContext<MyAppContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefoultConnection")));
            builder.Services.AddCustomRepository<Friend, FriendRepository>().AddUnitOfWork();
+           builder.Services.AddCustomRepository<Message, MessageRepository>().AddUnitOfWork();
             
 
             builder.Services.AddIdentity<User, IdentityRole>(opts =>
